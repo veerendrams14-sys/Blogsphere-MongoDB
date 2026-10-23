@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - BlogSphere</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                Blog<span>Sphere</span>
+            </a>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#latest">Latest</a>
+                <a href="login.html" class="active">Login</a>
+                <a href="register.html" class="nav-button">Register</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- Login Section -->
+    <main class="auth-section">
+
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <p class="section-label">WELCOME BACK</p>
+
+                <h1>Login to BlogSphere</h1>
+
+                <p>
+                    Continue your journey and explore amazing stories.
+                </p>
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-options">
+
+                    <label class="remember">
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+
+                    <a href="#">Forgot password?</a>
+
+                </div>
+
+
+                <button type="submit" class="auth-button">
+                    Login
+                </button>
+
+            </form>
+
+
+            <div class="auth-footer">
+                <p>
+                    Don't have an account?
+                    <a href="register.html">Create an account</a>
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+
+            <div>
+                <a href="index.html" class="logo">
+                    Blog<span>Sphere</span>
+                </a>
+
+                <p>Write. Share. Inspire.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 BlogSphere. All rights reserved.
+        </div>
+    </footer>
+<script src="js/script.js"></script>
+</body>
+</html>

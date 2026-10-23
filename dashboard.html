@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - BlogSphere</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                Blog<span>Sphere</span>
+            </a>
+
+            <nav>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#categories">
+                    Categories
+                </a>
+
+                <a href="index.html#latest">
+                    Latest
+                </a>
+
+                <a href="dashboard.html" class="active">
+                    Dashboard
+                </a>
+
+                <a href="create-blog.html"
+                   class="nav-button">
+                    Create Blog
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Dashboard -->
+
+    <main class="dashboard">
+
+        <div class="container">
+
+
+            <!-- Welcome -->
+
+            <section class="dashboard-header">
+
+                <div>
+
+                    <p class="section-label">
+                        YOUR DASHBOARD
+                    </p>
+
+                    <h1>
+                        Welcome back, Blogger! 👋
+                    </h1>
+
+                    <p>
+                        Manage your blogs and share your ideas
+                        with the world.
+                    </p>
+
+                </div>
+
+
+                <a href="create-blog.html"
+                   class="create-button">
+
+                    + Create New Blog
+
+                </a>
+
+            </section>
+
+
+            <!-- Statistics -->
+
+            <section class="stats">
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        0
+                    </span>
+
+                    <span class="stat-title">
+                        Total Blogs
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        0
+                    </span>
+
+                    <span class="stat-title">
+                        Published
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        0
+                    </span>
+
+                    <span class="stat-title">
+                        Drafts
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-number">
+                        0
+                    </span>
+
+                    <span class="stat-title">
+                        Total Views
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- My Blogs -->
+
+            <section class="blogs-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-label">
+                            CONTENT
+                        </p>
+
+                        <h2>
+                            My Blogs
+                        </h2>
+
+                    </div>
+
+
+                    <a href="create-blog.html">
+                        Create Blog →
+                    </a>
+
+                </div>
+
+
+                <!-- Blogs and Drafts -->
+
+                <div id="blogsContainer"
+                     class="blogs-container">
+
+                    <!--
+                        Published blogs and drafts
+                        will be loaded here
+                        by JavaScript.
+                    -->
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <div>
+
+                <a href="index.html"
+                   class="logo">
+
+                    Blog<span>Sphere</span>
+
+                </a>
+
+                <p>
+                    Write. Share. Inspire.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="create-blog.html">
+                    Create Blog
+                </a>
+
+                <a href="login.html"
+                   id="logoutLink">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 BlogSphere.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+  <script src="js/script.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+
+</html>

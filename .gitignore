@@ -1,0 +1,14 @@
+# VS Code
+.vscode/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+# Secrets and installed dependencies
+.env
+backend/.env
+backend/node_modules/
