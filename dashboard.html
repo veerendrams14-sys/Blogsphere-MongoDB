@@ -181,6 +181,27 @@
                 </div>
 
 
+                <!-- Search and category filter -->
+                <div class="blog-filters">
+                    <label class="visually-hidden" for="blogSearch">Search blogs</label>
+                    <input id="blogSearch" type="search" placeholder="Search by title, content or tags...">
+                    <label class="visually-hidden" for="categoryFilter">Filter by category</label>
+                    <select id="categoryFilter">
+                        <option value="">All categories</option>
+                        <option value="technology">Technology</option>
+                        <option value="development">Development</option>
+                        <option value="career">Career</option>
+                        <option value="design">Design</option>
+                        <option value="learning">Learning</option>
+                    </select>
+                    <label class="visually-hidden" for="statusFilter">Filter by status</label>
+                    <select id="statusFilter">
+                        <option value="">All statuses</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Drafts</option>
+                    </select>
+                </div>
+
                 <!-- Blogs and Drafts -->
 
                 <div id="blogsContainer"
@@ -257,7 +278,7 @@
 
     <!-- JavaScript -->
 
-  <script src="js/script.js"></script>
+  
 <script src="js/dashboard.js"></script>
 </body>
 

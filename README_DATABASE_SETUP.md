@@ -30,9 +30,22 @@ Use VS Code Live Server to open `Blogsphere/index.html` (or open the HTML files 
 - `POST /api/blogs` — title, category, content, optional tags/status
 - `GET /api/blogs` — list blogs
 - `GET /api/blogs/:id` — individual blog details and view count
+- `PUT /api/blogs/:id` or `PATCH /api/blogs/:id` — update an existing blog
+- `DELETE /api/blogs/:id` — delete a blog permanently
+- `GET /api/blogs?search=term&category=career&status=published` — search and filter blogs (all parameters optional)
 - `GET /api/health` — backend/database status
 
 ## Important
 - Never share or commit your real `.env` file or MongoDB password. `.env` is ignored by Git.
 - This starter integration implements database persistence, password hashing and login verification. It does not yet implement session/JWT authentication or per-user blog authorization; add those before deploying publicly.
 - Draft saving already present in the existing frontend uses browser localStorage. Published blog posts are stored in MongoDB.
+
+## Module 4 — CRUD Operations
+The dashboard supports listing blogs, searching by title/content/tags, filtering by category/status, editing an existing blog, and deleting a blog after confirmation. The create/edit form saves published posts and drafts to MongoDB. Blog API routes provide Create (POST), Read (GET), Update (PUT/PATCH), and Delete (DELETE).
+
+### CRUD verification checklist
+1. Create a published blog and confirm it appears on the dashboard and in MongoDB Atlas.
+2. Save a draft and confirm its status is `draft`.
+3. Open Edit, change the title or content, save, and verify the updated values.
+4. Search by a word in the title/content and filter by category or status.
+5. Delete a test blog and verify it no longer appears in the dashboard or database.
