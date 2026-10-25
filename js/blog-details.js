@@ -1,5 +1,5 @@
 
-const API_BASE = "http://localhost:5000/api/blogs";
+const API_BASE = "http://blogsphere-mongo-db.vercel.app/api/blogs";
 
 const target = document.getElementById("blogDetails");
 

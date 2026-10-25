@@ -18,8 +18,8 @@ The frontend design is retained and the backend now stores users and blog posts 
    npm start
    ```
 
-5. Wait for `MongoDB connected successfully` and `BlogSphere Backend running on http://localhost:5000`.
-6. Open `http://localhost:5000/api/health`; it should report `"database":"connected"`.
+5. Wait for `MongoDB connected successfully` and `BlogSphere Backend running on http://blogsphere-mongo-db.vercel.app`.
+6. Open `http://blogsphere-mongo-db.vercel.app/api/health`; it should report `"database":"connected"`.
 
 ## 3. Run the frontend
 Use VS Code Live Server to open `Blogsphere/index.html` (or open the HTML files through your usual local frontend server). Keep the backend terminal running. Register a new account, then log in. Create a blog and check the dashboard. Refreshing the page or restarting the backend should not delete saved users or blogs.

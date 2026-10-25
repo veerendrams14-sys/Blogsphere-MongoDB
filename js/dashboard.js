@@ -1,5 +1,5 @@
 
-const BLOGS_API_URL = "http://localhost:5000/api/blogs";
+const BLOGS_API_URL = "http://blogsphere-mongo-db.vercel.app/api/blogs";
 
 // Dashboard elements
 const blogsContainer = document.getElementById("blogsContainer");
@@ -213,7 +213,7 @@ function displayBlogs(blogs) {
 
         blogsContainer.innerHTML = `
             <div class="empty-state">
-                <h3>${hasFilters ? "No matching blogs" : "No blogs yet G£ìn+Å"}</h3>
+                <h3>${hasFilters ? "No matching blogs" : "No blogs yet Gï¿½ï¿½n+ï¿½"}</h3>
                 <p>
                     ${hasFilters
                         ? "Try changing your search or filters."
@@ -279,7 +279,7 @@ function displayBlogs(blogs) {
                     <p>${escapeHtml(excerpt)}</p>
 
                     <div class="blog-meta">
-                        <span>=ƒæü ${views} views</span>
+                        <span>=ï¿½ï¿½ï¿½ ${views} views</span>
 
                         <span class="status-pill status-${escapeHtml(status)}">
                             ${escapeHtml(status)}

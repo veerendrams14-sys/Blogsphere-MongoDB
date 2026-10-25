@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/blogs";
+const API_URL = "http://blogsphere-mongo-db.vercel.app/api/blogs";
 
 // Get authentication headers for protected API requests.
 function getAuthHeaders(json = false) {
