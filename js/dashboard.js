@@ -1,5 +1,7 @@
 
-const BLOGS_API_URL = "http://blogsphere-mongo-db.vercel.app/api/blogs";
+"use strict";
+
+const BLOGS_API_URL = "https://blogsphere-mongo-db.vercel.app/api/blogs";
 
 // Dashboard elements
 const blogsContainer = document.getElementById("blogsContainer");
@@ -106,12 +108,14 @@ async function loadBlogs() {
             throw new Error(data.message || "Failed to load blogs.");
         }
 
-        // Supports APIs returning { success: true, blogs: [...] }
+        // Support common API response formats
         allBlogs = Array.isArray(data.blogs)
             ? data.blogs
             : Array.isArray(data.data)
                 ? data.data
-                : [];
+                : Array.isArray(data)
+                    ? data
+                    : [];
 
         updateStatistics(allBlogs);
         renderFilteredBlogs();
@@ -123,7 +127,10 @@ async function loadBlogs() {
             <div class="empty-state">
                 <h3>Unable to load blogs</h3>
                 <p>${escapeHtml(error.message)}</p>
-                <button type="button" class="create-button" id="retryLoadBlogs">
+                <button
+                    type="button"
+                    class="create-button"
+                    id="retryLoadBlogs">
                     Try Again
                 </button>
             </div>
@@ -151,7 +158,6 @@ function updateStatistics(blogs) {
         0
     );
 
-    // These correspond to the four .stat-number elements in dashboard.html
     if (statNumbers[0]) {
         statNumbers[0].textContent = totalBlogs;
     }
@@ -213,7 +219,7 @@ function displayBlogs(blogs) {
 
         blogsContainer.innerHTML = `
             <div class="empty-state">
-                <h3>${hasFilters ? "No matching blogs" : "No blogs yet G��n+�"}</h3>
+                <h3>${hasFilters ? "No matching blogs" : "No blogs yet"}</h3>
                 <p>
                     ${hasFilters
                         ? "Try changing your search or filters."
@@ -221,7 +227,10 @@ function displayBlogs(blogs) {
                 </p>
                 ${
                     hasFilters
-                        ? `<button type="button" class="create-button" id="clearBlogFilters">
+                        ? `<button
+                               type="button"
+                               class="create-button"
+                               id="clearBlogFilters">
                                Clear Filters
                            </button>`
                         : `<a href="create-blog.html" class="create-button">
@@ -249,6 +258,7 @@ function displayBlogs(blogs) {
 
         const title = blog.title || "Untitled Blog";
         const content = String(blog.content || "");
+
         const excerpt = content.length > 220
             ? content.slice(0, 220) + "..."
             : content;
@@ -279,7 +289,7 @@ function displayBlogs(blogs) {
                     <p>${escapeHtml(excerpt)}</p>
 
                     <div class="blog-meta">
-                        <span>=��� ${views} views</span>
+                        <span>${views} views</span>
 
                         <span class="status-pill status-${escapeHtml(status)}">
                             ${escapeHtml(status)}
@@ -357,7 +367,7 @@ async function deleteBlog(id, title) {
             throw new Error(data.message || "Failed to delete blog.");
         }
 
-        // Update the dashboard after successful deletion
+        // Update dashboard after successful deletion
         allBlogs = allBlogs.filter(
             blog => getBlogId(blog) !== String(id)
         );
