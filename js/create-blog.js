@@ -1,4 +1,7 @@
-const API_URL = "http://blogsphere-mongo-db.vercel.app/api/blogs";
+
+"use strict";
+
+const API_URL = "https://blogsphere-mongo-db.vercel.app/api/blogs";
 
 // Get authentication headers for protected API requests.
 function getAuthHeaders(json = false) {
@@ -76,10 +79,12 @@ async function saveBlog(status) {
 
         if (response.status === 401 || response.status === 403) {
             alert("Your login session has expired. Please log in again.");
+
             localStorage.removeItem("token");
             localStorage.removeItem("authToken");
             localStorage.removeItem("blogSphereLoggedIn");
             localStorage.removeItem("blogSphereCurrentUser");
+
             window.location.href = "login.html";
             return;
         }
@@ -103,7 +108,7 @@ async function saveBlog(status) {
 
         alert(
             (error.message || "Unable to save blog.") +
-            "\nPlease check that the backend is running and MongoDB is connected."
+            "\nPlease check the backend connection and try again."
         );
 
     } finally {
@@ -113,7 +118,7 @@ async function saveBlog(status) {
     }
 }
 
-// Publish a new blog or publish changes to an existing blog.
+// Publish a new blog or update an existing blog.
 blogForm.addEventListener("submit", function (event) {
     event.preventDefault();
     saveBlog("published");
@@ -159,14 +164,15 @@ async function loadBlogForEditing() {
         const data = await response.json();
 
         if (response.status === 401 || response.status === 403) {
-            throw new Error("Your login session is invalid. Please log in again.");
+            throw new Error(
+                "Your login session is invalid. Please log in again."
+            );
         }
 
         if (!response.ok || !data.success) {
             throw new Error(data.message || "Unable to load blog details.");
         }
 
-        // Support either response format.
         const blog = data.blog || data.data;
 
         if (!blog) {
@@ -178,7 +184,6 @@ async function loadBlogForEditing() {
         const categoryField = document.getElementById("category");
         categoryField.value = blog.category || "";
 
-        // Add a category option if it is not already listed.
         if (blog.category && categoryField.value !== blog.category) {
             const option = document.createElement("option");
             option.value = blog.category;
