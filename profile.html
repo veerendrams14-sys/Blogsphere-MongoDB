@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | BlogSphere</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      color: #222;
+    }
+
+    .profile-container {
+      max-width: 650px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .profile-card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-avatar {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      background: #6c63ff;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 35px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .profile-field {
+      margin: 18px 0;
+    }
+
+    .profile-field label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    .profile-field input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    .profile-field input:not([readonly]) {
+      background: white;
+      border-color: #6c63ff;
+      outline: 2px solid #6c63ff22;
+    }
+
+    .profile-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .profile-actions button,
+    .profile-actions a {
+      display: inline-block;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      font: inherit;
+      text-align: center;
+    }
+
+    .primary {
+      background: #6c63ff;
+      color: white;
+    }
+
+    .secondary {
+      background: #eee;
+      color: #222;
+    }
+
+    .logout {
+      background: #ffe8e8;
+      color: #b42318;
+    }
+
+    .profile-actions button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .profile-message {
+      margin-top: 15px;
+      overflow-wrap: anywhere;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .profile-container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .profile-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="profile-container">
+    <section class="profile-card">
+
+      <div class="profile-avatar" id="avatar">B</div>
+
+      <h1>My Profile</h1>
+      <p>View and update your BlogSphere account details.</p>
+
+      <div class="profile-field">
+        <label for="profileName">Full Name</label>
+        <input
+          id="profileName"
+          type="text"
+          maxlength="100"
+          autocomplete="name"
+          readonly
+        >
+      </div>
+
+      <div class="profile-field">
+        <label for="profileEmail">Email Address</label>
+        <input
+          id="profileEmail"
+          type="email"
+          autocomplete="email"
+          readonly
+        >
+      </div>
+
+      <div class="profile-field">
+        <label for="joinedDate">Member Since</label>
+        <input
+          id="joinedDate"
+          type="text"
+          readonly
+        >
+      </div>
+
+      <div class="profile-actions">
+        <button type="button" class="primary" id="editButton">
+          Edit Name
+        </button>
+
+        <button type="button" class="primary" id="saveButton">
+          Save Name
+        </button>
+
+        <button type="button" class="secondary" id="cancelButton">
+          Cancel
+        </button>
+
+        <a href="dashboard.html" class="secondary">
+          Dashboard
+        </a>
+
+        <button type="button" class="logout" id="logoutButton">
+          Logout
+        </button>
+      </div>
+
+      <p
+        class="profile-message"
+        id="profileMessage"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const API_URL = "http://localhost:5000/api/auth";
+
+      const nameInput = document.getElementById("profileName");
+      const emailInput = document.getElementById("profileEmail");
+      const joinedInput = document.getElementById("joinedDate");
+      const avatar = document.getElementById("avatar");
+      const message = document.getElementById("profileMessage");
+
+      const editButton = document.getElementById("editButton");
+      const saveButton = document.getElementById("saveButton");
+      const cancelButton = document.getElementById("cancelButton");
+      const logoutButton = document.getElementById("logoutButton");
+
+      let token =
+        localStorage.getItem("token") ||
+        localStorage.getItem("authToken");
+
+      let originalName = "";
+
+      function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("blogSphereLoggedIn");
+        localStorage.removeItem("blogSphereCurrentUser");
+        localStorage.removeItem("editingDraftId");
+
+        window.location.href = "login.html";
+      }
+
+      logoutButton.addEventListener("click", logout);
+
+      async function apiRequest(url, options = {}) {
+        const response = await fetch(url, {
+          ...options,
+          headers: {
+            ...(options.body
+              ? { "Content-Type": "application/json" }
+              : {}),
+            ...(token
+              ? { Authorization: `Bearer ${token}` }
+              : {}),
+            ...options.headers
+          }
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (response.status === 401 || response.status === 403) {
+          logout();
+          throw new Error("Your session expired. Please log in again.");
+        }
+
+        if (!response.ok || data.success === false) {
+          throw new Error(
+            data.message || `Request failed (${response.status}).`
+          );
+        }
+
+        return data;
+      }
+
+      async function loadProfile() {
+        if (!token) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        message.textContent = "Loading profile...";
+
+        try {
+          const data = await apiRequest(`${API_URL}/me`);
+          const user = data.user || data.data?.user || data.data;
+
+          if (!user) {
+            throw new Error("Profile details were not returned by the server.");
+          }
+
+          nameInput.value = user.name || "";
+          emailInput.value = user.email || "";
+
+          joinedInput.value = user.createdAt
+            ? new Date(user.createdAt).toLocaleDateString()
+            : "Date unavailable";
+
+          originalName = nameInput.value;
+          avatar.textContent =
+            (user.name || "B").charAt(0).toUpperCase();
+
+          localStorage.setItem(
+            "blogSphereCurrentUser",
+            JSON.stringify(user)
+          );
+
+          message.textContent = "";
+        } catch (error) {
+          message.textContent =
+            error.message ||
+            "Could not load your profile. Check that the backend is running.";
+        }
+      }
+
+      // Enable editing the name.
+      editButton.addEventListener("click", () => {
+        originalName = nameInput.value;
+        nameInput.readOnly = false;
+        nameInput.focus();
+
+        message.textContent =
+          "Enter your updated name, then click Save Name.";
+      });
+
+      // Cancel changes and restore the previous name.
+      cancelButton.addEventListener("click", () => {
+        nameInput.value = originalName;
+        nameInput.readOnly = true;
+
+        message.textContent = "Changes cancelled.";
+      });
+
+      // Save the updated name to MongoDB through the backend.
+      saveButton.addEventListener("click", async () => {
+        const name = nameInput.value.trim();
+
+        if (!name || name.length > 100) {
+          message.textContent =
+            "Enter a name between 1 and 100 characters.";
+          nameInput.focus();
+          return;
+        }
+
+        saveButton.disabled = true;
+        message.textContent = "Saving name...";
+
+        try {
+          const data = await apiRequest(`${API_URL}/me`, {
+            method: "PUT",
+            body: JSON.stringify({ name })
+          });
+
+          const user = data.user || data.data?.user || { name };
+
+          nameInput.value = user.name || name;
+          nameInput.readOnly = true;
+          originalName = nameInput.value;
+
+          avatar.textContent =
+            nameInput.value.charAt(0).toUpperCase();
+
+          const oldUser = JSON.parse(
+            localStorage.getItem("blogSphereCurrentUser") || "{}"
+          );
+
+          localStorage.setItem(
+            "blogSphereCurrentUser",
+            JSON.stringify({ ...oldUser, ...user })
+          );
+
+          message.textContent =
+            data.message || "Name updated successfully.";
+        } catch (error) {
+          message.textContent =
+            error.message || "Could not save your name.";
+        } finally {
+          saveButton.disabled = false;
+        }
+      });
+
+      loadProfile();
+    })();
+  </script>
+</body>
+</html>

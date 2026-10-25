@@ -1,103 +1,43 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Blog - BlogSphere</title>
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/create-blog.css">
-
 </head>
 
 <body>
-
-    <!-- Navigation -->
-
     <header class="navbar">
-
         <div class="container nav-container">
-
             <a href="index.html" class="logo">
                 Blog<span>Sphere</span>
             </a>
 
             <nav>
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="index.html#categories">
-                    Categories
-                </a>
-
-                <a href="index.html#latest">
-                    Latest
-                </a>
-
-                <a href="dashboard.html">
-                    Dashboard
-                </a>
-
-                <a href="create-blog.html"
-                   class="nav-button">
-                    Create Blog
-                </a>
-
+                <a href="index.html">Home</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#latest">Latest</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="create-blog.html" class="nav-button">Create Blog</a>
             </nav>
-
         </div>
-
     </header>
 
-
-    <!-- Create Blog -->
-
     <main class="create-blog-page">
-
         <div class="container">
-
-
-            <!-- Page Header -->
-
             <section class="create-header">
-
-                <p class="section-label">
-                    BLOG EDITOR
-                </p>
-
-                <h1>
-                    Create a New Blog
-                </h1>
-
-                <p>
-                    Share your ideas, knowledge and stories
-                    with the BlogSphere community.
-                </p>
-
+                <p class="section-label">BLOG EDITOR</p>
+                <h1>Create a New Blog</h1>
+                <p>Share your ideas, knowledge and stories with the BlogSphere community.</p>
             </section>
 
-
-            <!-- Blog Form -->
-
-            <form id="blogForm"
-                  class="blog-form">
-
-
-                <!-- Title -->
-
+            <form id="blogForm" class="blog-form">
                 <div class="form-group">
-
-                    <label for="blogTitle">
-                        Blog Title
-                    </label>
-
+                    <label for="blogTitle">Blog Title</label>
                     <input
                         type="text"
                         id="blogTitle"
@@ -105,112 +45,44 @@
                         placeholder="Enter your blog title"
                         required
                     >
-
                 </div>
 
-
-                <!-- Category + Tags -->
-
                 <div class="form-row">
-
                     <div class="form-group">
-
-                        <label for="category">
-                            Category
-                        </label>
-
-                        <select id="category"
-                                name="category"
-                                required>
-
-                            <option value="">
-                                Select category
-                            </option>
-
-                            <option value="technology">
-                                Technology
-                            </option>
-
-                            <option value="development">
-                                Development
-                            </option>
-
-                            <option value="career">
-                                Career
-                            </option>
-
-                            <option value="design">
-                                Design
-                            </option>
-
-                            <option value="learning">
-                                Learning
-                            </option>
-
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select category</option>
+                            <option value="technology">Technology</option>
+                            <option value="development">Development</option>
+                            <option value="career">Career</option>
+                            <option value="design">Design</option>
+                            <option value="learning">Learning</option>
                         </select>
-
                     </div>
 
-
                     <div class="form-group">
-
-                        <label for="tags">
-                            Tags
-                        </label>
-
+                        <label for="tags">Tags</label>
                         <input
                             type="text"
                             id="tags"
                             name="tags"
                             placeholder="Java, Web, Coding"
                         >
-
                     </div>
-
                 </div>
 
-
-                <!-- Cover Image -->
-
                 <div class="form-group">
-
-                    <label for="coverImage">
-                        Cover Image
-                    </label>
-
+                    <label for="coverImage">Cover Image</label>
                     <div class="upload-box">
-
-                        <div class="upload-icon">
-                            ðŸ“·
-                        </div>
-
-                        <h3>
-                            Upload a cover image
-                        </h3>
-
-                        <p>
-                            Choose an image for your blog
-                        </p>
-
-                        <input
-                            type="file"
-                            id="coverImage"
-                            accept="image/*"
-                        >
-
+                        <div class="upload-icon">=ƒô+</div>
+                        <h3>Upload a cover image</h3>
+                        <p>Choose an image for your blog</p>
+                        <input type="file" id="coverImage" name="coverImage" accept="image/*">
                     </div>
-
                 </div>
 
-
-                <!-- Content -->
-
                 <div class="form-group">
-
-                    <label for="content">
-                        Blog Content
-                    </label>
-
+                    <label for="content">Blog Content</label>
                     <textarea
                         id="content"
                         name="content"
@@ -218,94 +90,54 @@
                         placeholder="Start writing your blog here..."
                         required
                     ></textarea>
-
                 </div>
-
-
-                <!-- Buttons -->
 
                 <div class="form-actions">
+                    <a href="dashboard.html" class="cancel-button">Cancel</a>
 
-                    <a href="dashboard.html"
-                       class="cancel-button">
-
-                        Cancel
-
-                    </a>
-
-                    <button
-                        type="button"
-                        class="draft-button">
-
+                    <button type="button" class="draft-button">
                         Save as Draft
-
                     </button>
 
-                    <button
-                        type="submit"
-                        class="publish-button">
-
+                    <button type="submit" class="publish-button">
                         Publish Blog
-
                     </button>
-
                 </div>
-
-
             </form>
-
         </div>
-
     </main>
 
-
-    <!-- Footer -->
-
     <footer>
-
         <div class="container footer-content">
-
             <div>
-
-                <a href="index.html"
-                   class="logo">
-
-                    Blog<span>Sphere</span>
-
-                </a>
-
-                <p>
-                    Write. Share. Inspire.
-                </p>
-
+                <a href="index.html" class="logo">Blog<span>Sphere</span></a>
+                <p>Write. Share. Inspire.</p>
             </div>
-
 
             <div class="footer-links">
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="dashboard.html">
-                    Dashboard
-                </a>
-
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
             </div>
-
         </div>
-
 
         <div class="copyright">
-
-            Â© 2026 BlogSphere.
-            All rights reserved.
-
+            -¬ 2026 BlogSphere. All rights reserved.
         </div>
-
     </footer>
 
-<script src="js/create-blog.js"></script>
-</body>
+    <script>
+        // Check that the user has a login session before opening the editor.
+        (() => {
+            const token = localStorage.getItem("token");
+            const user = localStorage.getItem("blogSphereCurrentUser");
 
+            if (!token || !user) {
+                window.location.replace("login.html");
+            }
+        })();
+    </script>
+
+    <script src="js/create-blog.js"></script>
+</body>
 </html>
+```

@@ -1,289 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register - BlogSphere</title>
+    <title>Register | BlogSphere</title>
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/register.css">
-
 </head>
-
 
 <body>
 
-
     <!-- Navigation -->
-
     <header class="navbar">
-
         <div class="container nav-container">
 
             <a href="index.html" class="logo">
-
                 Blog<span>Sphere</span>
-
             </a>
 
-
             <nav>
-
                 <a href="index.html">Home</a>
-
-                <a href="index.html#categories">
-                    Categories
-                </a>
-
-                <a href="index.html#latest">
-                    Latest
-                </a>
-
-                <a href="login.html">
-                    Login
-                </a>
-
-                <a href="register.html"
-                   class="nav-button active">
-
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#latest">Latest</a>
+                <a href="login.html">Login</a>
+                <a href="register.html" class="nav-button active">
                     Register
-
                 </a>
-
             </nav>
 
         </div>
-
     </header>
 
-
-
-    <!-- Register Section -->
-
+    <!-- Registration Section -->
     <main class="auth-section">
-
         <div class="auth-card">
 
-
             <div class="auth-header">
+                <p class="section-label">JOIN BLOGSPHERE</p>
 
-                <p class="section-label">
-                    JOIN BLOGSPHERE
-                </p>
-
-                <h1>
-                    Create an Account
-                </h1>
+                <h1>Create an Account</h1>
 
                 <p>
                     Join our community and start sharing your stories.
                 </p>
-
             </div>
 
-
-
+            <!-- Registration Form -->
             <form id="registerForm">
 
-
-                <!-- Full Name -->
-
                 <div class="form-group">
-
-                    <label for="name">
-                        Full Name
-                    </label>
+                    <label for="name">Full Name</label>
 
                     <input
                         type="text"
                         id="name"
                         name="name"
                         placeholder="Enter your full name"
+                        maxlength="100"
+                        autocomplete="name"
                         required
                     >
-
                 </div>
 
-
-
-                <!-- Email -->
-
                 <div class="form-group">
-
-                    <label for="email">
-                        Email Address
-                    </label>
+                    <label for="email">Email Address</label>
 
                     <input
                         type="email"
                         id="email"
                         name="email"
                         placeholder="Enter your email"
+                        autocomplete="email"
                         required
                     >
-
                 </div>
 
-
-
-                <!-- Password -->
-
                 <div class="form-group">
-
-                    <label for="password">
-                        Password
-                    </label>
+                    <label for="password">Password</label>
 
                     <input
                         type="password"
                         id="password"
                         name="password"
                         placeholder="Create a password"
+                        minlength="6"
+                        autocomplete="new-password"
                         required
                     >
-
                 </div>
 
-
-
-                <!-- Confirm Password -->
-
                 <div class="form-group">
-
-                    <label for="confirmPassword">
-                        Confirm Password
-                    </label>
+                    <label for="confirmPassword">Confirm Password</label>
 
                     <input
                         type="password"
                         id="confirmPassword"
                         name="confirmPassword"
                         placeholder="Confirm your password"
+                        minlength="6"
+                        autocomplete="new-password"
                         required
                     >
-
                 </div>
 
-
-
-                <!-- Terms -->
-
+                <!-- Terms and Conditions -->
                 <label class="terms">
-
                     <input
                         type="checkbox"
+                        id="agreeTerms"
+                        name="agreeTerms"
                         required
                     >
 
                     <span>
-
                         I agree to the
-                        <a href="#">
-                            Terms & Conditions
+                        <a href="#" id="termsLink">
+                            Terms &amp; Conditions
                         </a>
-
                     </span>
-
                 </label>
 
-
-
-                <!-- Button -->
+                <!-- Registration Feedback -->
+                <p
+                    id="registerMessage"
+                    role="status"
+                    aria-live="polite"
+                ></p>
 
                 <button
                     type="submit"
                     class="auth-button"
+                    id="registerButton"
                 >
-
                     Create Account
-
                 </button>
-
 
             </form>
 
-
-
             <!-- Login Link -->
-
             <div class="auth-footer">
-
                 <p>
-
                     Already have an account?
-
-                    <a href="login.html">
-                        Login here
-                    </a>
-
+                    <a href="login.html">Login here</a>
                 </p>
-
             </div>
 
-
         </div>
-
     </main>
 
-
-
     <!-- Footer -->
-
     <footer>
-
         <div class="container footer-content">
 
-
             <div>
-
                 <a href="index.html" class="logo">
-
                     Blog<span>Sphere</span>
-
                 </a>
 
-                <p>
-                    Write. Share. Inspire.
-                </p>
-
+                <p>Write. Share. Inspire.</p>
             </div>
-
 
             <div class="footer-links">
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="login.html">
-                    Login
-                </a>
-
+                <a href="index.html">Home</a>
+                <a href="login.html">Login</a>
             </div>
 
-
         </div>
-
 
         <div class="copyright">
-
-            © 2026 BlogSphere. All rights reserved.
-
+            &copy; 2026 BlogSphere. All rights reserved.
         </div>
-
-
     </footer>
 
-
-
     <!-- JavaScript -->
-
     <script src="js/script.js"></script>
 
-
 </body>
-
 </html>
