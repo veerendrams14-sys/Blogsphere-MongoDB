@@ -6,7 +6,7 @@
 // Module 5: Authentication and Logout
 // ============================================================
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://blogsphere-mongo-db.vercel.app";
 
 // ============================================================
 // HELPER: READ JSON RESPONSE SAFELY
