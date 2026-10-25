@@ -204,7 +204,9 @@
 
   <script>
     (() => {
-      const API_URL = "http://blogsphere-mongo-db.vercel.app/api/auth";
+      // IMPORTANT: Use HTTPS for the deployed backend.
+      const API_URL =
+        "https://blogsphere-mongo-db.vercel.app/api/auth";
 
       const nameInput = document.getElementById("profileName");
       const emailInput = document.getElementById("profileEmail");
@@ -278,7 +280,9 @@
           const user = data.user || data.data?.user || data.data;
 
           if (!user) {
-            throw new Error("Profile details were not returned by the server.");
+            throw new Error(
+              "Profile details were not returned by the server."
+            );
           }
 
           nameInput.value = user.name || "";
@@ -289,6 +293,7 @@
             : "Date unavailable";
 
           originalName = nameInput.value;
+
           avatar.textContent =
             (user.name || "B").charAt(0).toUpperCase();
 
@@ -301,11 +306,10 @@
         } catch (error) {
           message.textContent =
             error.message ||
-            "Could not load your profile. Check that the backend is running.";
+            "Could not load your profile. Please try again.";
         }
       }
 
-      // Enable editing the name.
       editButton.addEventListener("click", () => {
         originalName = nameInput.value;
         nameInput.readOnly = false;
@@ -315,7 +319,6 @@
           "Enter your updated name, then click Save Name.";
       });
 
-      // Cancel changes and restore the previous name.
       cancelButton.addEventListener("click", () => {
         nameInput.value = originalName;
         nameInput.readOnly = true;
@@ -323,7 +326,6 @@
         message.textContent = "Changes cancelled.";
       });
 
-      // Save the updated name to MongoDB through the backend.
       saveButton.addEventListener("click", async () => {
         const name = nameInput.value.trim();
 
